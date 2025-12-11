@@ -1,0 +1,205 @@
+
+<!-- Program name: patient-form.html
+Author: Si John Van
+Date created: 2024-09-21
+Date Modified: 2024-10-12
+Version: 1.0
+Description: This is a online patient intake fourm designed to capture and store data provided by patients.  -->
+
+ <!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Riverside Medical Registration</title>
+        <link rel="stylesheet" href="styles-1.css">         <!-- Load external CSS styles -->
+    </head>
+   <body>
+      <!--Banner             -->
+      <div id="banner">
+         <h2 id="welcomeMsg"></h2>
+         <div id="newUserOption"></div>
+         <div id="resetUserContainer"></div>
+         <img id="logo" src="medical.png" alt="Riverside Medical Logo">
+         <div id="banner-title">Riverside Medical Registration</div>
+         <div id="datetime"></div>
+ 
+         
+      </div>
+                <script src="scripts-1.js"></script>       <!-- Load external JavaScript -->
+      <!-- END OF BANNER      -->
+      
+ <form id="signup" action="thankyou-1.html" method="get" onsubmit="saveFirstName()">      
+
+      <!--Account Info        -->
+      <div class = "AccountInformation">
+         <h2>Account Information</h2>
+     
+         
+         <label for="email">Email:</label>
+         <input type="email" id="email" size="30" maxlength="40" placeholder="JohnDoe@gmail.com" onblur="emailCheck() localSave('email')" required><br><br>
+         <span id="emailError" style="color:red; class="error-msg"></span>
+
+         <label for="userid">User Name:</label>
+         <input type= "text" id="userid" pattern="^[A-Z][A-Za-z0-9_]{4, 29}$" size="30" maxlength="30" placeholder ="Enter username" onblur="useridCheck()" required><br><br>
+         <span id="userError" style="color:red;"></span>
+
+         <label for="password">Password:</label>
+         <input type="password" id="password" pattern = "((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,})" size="15" maxlength="15" onblur="verifyPassword()" required>
+
+         <label for="verifyPassword" style="margin-left: 20px;">Verify Password:</label>
+         <input type="password" id="verifyPassword" size ="15" maxlength="50" onblur="verifyPassword()" required>
+
+         <span id="passwordMessage" style="color:red"></span><br><br>
+
+         <label for="rememberMe">Remember Me:</label>
+         <input type ="checkbox" id="rememberMe" checked> 
+     
+    
+      </div>
+      <!-- END OF ACCOUNTINFO -->
+
+      <!-- Patient Demo       -->
+      <div class ="PatientDemographics">
+         <h2>Patient Demographics</h2>
+    
+         <div class="flex-row">
+          <label for="fname">First Name:</label>
+          <input type="text" id="fname" pattern="[A-Z^a-z-']{2,}" size="30" maxlength="30" onblur="firstNameCheck(); localSave('fname')"required>
+          <span id="fnameError" style="color:red;"></span>
+
+          <label for="MI">MI:</label>
+          <input type="text" id="mi" pattern="[A-Z^a-z ]{0,}" size="1" maxlength="1">
+       
+ 
+          <label for="lname">Last Name:</label>
+          <input type="text" id="lname" pattern="[A-Z^a-z34-' ]{2,}" size ="30" maxlength="30" onblur="lastNameCheck(); localSave('lname')" required><br><br>
+         <span id="lnameError" style="color:red;"></span>
+         </div>
+
+         <div class="flex-row">
+            <label for="address1">Address Line1:</label>
+            <input type="text" id ="address1" size="30" maxlength="30"onblur="addressCheck() localSave('address1')" required>
+           <span id="addressError" style="color:red;"></span>
+  
+            <label for="address2">Address Line2:</label>
+            <input type="text" id ="address2" size="30" maxlength="30" onblur="localSave('address2')"><br><br>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" size="30" maxlength="30" onblur="cityCheck() localSave('city')" required>
+            <span id="cityError" style="color:red"></span>
+    
+            <label for="state">State:</label>
+            <select id="state" onchange= "localSave('state')"required>
+              <option value=""></option>
+	           
+           </select>
+
+           <label for="zip">ZIP:</label>
+           <input type="text" id="zip" size="5" maxlength="5" onblur="zipCheck localSave('zip')" required><br><br>
+           <span id="zipError" style="color:red;"></span>
+
+           <label for="homePhone">Home Phone:</label>
+           <input type="tel" id ="homePhone"  maxlength="14" placeholder="(123) 456-7890" onblur="phoneCheck() localSave('homePhone')" required>
+           <span id="phoneError" style="color:red;"></span>
+
+           <label for="workphone">Work Phone:</label>
+           <input type="tel" id ="workPhone" maxlength="14" maxlength="10" oninput="this.value = formatPhone(this.value)" onblur="localSave('homePhone')" placeholder="(123) 456-7890"><br><br>
+
+           <label for="dob">Date of Birth:</label>
+           <input type="date" id = "dob" placeholder="(MM/DD/YYYY)" size="10" min="1910-01-01" onblur="dobCheck()" required>
+           <span id="birthdayMsg" style ="color:red;"></span>
+
+           <label for="ssn">SSN:</label>
+          <input type="password" id ="ssn" placeholder="XXX-XX-XXXX" size="11" maxlength="11" onblur="ssnCheck()" required><br><br>
+          <span id="ssnError" style="color=red;"></span>
+       </div>
+
+       <label for="gender">Gender:</label>
+       <input type="radio" id="genderMale"  name="gender" value="male" required>
+       <label for="male">Male</label>
+      <input type="radio" id="genderFemale" name = "gender" value="female">
+       <label for="female">Female</label>
+       <input type="radio" id="genderOther" name = "gender" value="other">
+       <label for="other">Other</label>
+   </div>
+      <!--End of Patient Demo -->
+
+   <div class = "MedicalInformation">
+      <h2>Medical Information</h2>
+    
+      <label for="bloodtype">Blood Type:</label>
+      <select id="bloodtype" name="bloodtype" required>
+        <option value="">Select</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+      </select><br><br>
+
+      <label>Do you currently smoke?<label>
+      <input type="radio" id="smokeYes" name="smoke" value ="yes" required>
+      <label for="Smoke">Yes</label>
+      <input type="radio" id ="smokeNo" name="smoke" value="no" ">
+      <label for="Smoke">No</label><br><br>
+
+      <label>Do you drink alcohol?<label>
+      <input type="radio" id="alcoholYes" name="alcohol" value="yes" "required>
+      <label for="alcohol">Yes</label>
+      <input type="radio" id="alcoholNo" name="alcohol" value ="no" >
+      <label for="alcohol">No</label><br><br>
+
+      <label>Select any applicable allergies:</label><br>
+      <input type="checkbox" id="anesthetics" value="Anesthetics">
+      <label for="Anesthetics">Anesthetics</label><br>
+      <input type="checkbox" id="aspirin" value="aspirin">
+      <label for="aspirin">Aspirin</label><br>
+      <input type="checkbox" id="cephalosporins" value="Cephalosporins">
+      <label for="Cephalosporins">Cephalosporins</label> <br>
+      <input type="checkbox" id="latex" value="latex">
+      <label for="latex">Latex</label><br>
+      <input type="checkbox" id="penicillin" value="penicillin">
+      <label for="penicillin">Penicillin</label><br>
+      <input type="checkbox" id="pollen" value="pollen">
+      <label for="pollen">Pollen</label><br>
+      <input type="checkbox" id="sulfa" value="sulfa">
+      <label for="sulfa">Sulfa Drugs</label><br><br>
+
+      <label for="mood">Current Mood:</label><br><br>
+        <span id="moodSlide"></span>
+      <input type="range" id="mood" min="0" max="6" value="3">
+    </div>
+<!-- End of Medical Info -->
+          
+<!-- Insurance Info     -->
+<div class ="InsuranceInformation">
+    <h2>Insurance Information (Optional)</h2>
+
+        <table>
+         <label for="insurancecov">Please describe your insurance coverage:</label><br>
+         <textarea id="insurancecov" rows="4" style="width:60%; resize:vertical;"></textarea>
+         </table>
+     
+
+   
+    <div class="button">
+      <input type="button" id="getdata" value="Review" onclick="review()">
+      <input type="submit" value="Submit">
+      <input type="reset" value="Reset"><br><br>  
+     
+   </div>
+
+   <div id="review"></div>
+   </form>
+ 
+ 
+     
+<!-- End of Inssurance Info -->
+
+<iframe src="footer.html" style ="width:100%"></iframe>
+ 
+    </body>
+</html>

@@ -1,0 +1,120 @@
+ /* Place your CSS styles in this file */
+
+h1 {
+    text-align: center;
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: normal;
+}
+
+#logo, #logo2{
+    width: 50px;
+    height: auto;
+    margin-right: 50px;
+}
+
+#banner {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    color: #C7E6D0;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    background-color: #67AB9F;
+    height: 90px;
+    font-size: 24px;
+}
+
+#newUserOption button {
+display: inline-block;
+margin-top: 5px;
+color: black;
+}
+
+#datetime {
+    font-size:14px;
+    color: #C7E6D0;
+    margin-top: 5px;
+}
+
+.AccountInformation, .PatientDemographics, .MedicalInformation, .InsuranceInformation {
+    background-color: #28425E;
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+#moodSlide {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+body {
+    font-size: 18px
+}
+
+.button input[type="submit"] {
+    background-color: green;
+    color: black;
+    border: 2px solid #000000
+}
+
+.button input[type="reset"] {
+    background-color: red;
+    color: black;
+    border:2px solid #000000;
+}
+
+.button input[type="button"] {
+    background-color: blue;
+    color: black;
+    border: 2px solid #000000;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    width: 120px;
+    flex: 1;
+    padding: 5px;
+
+}
+
+
+.error-msg {
+    color: red;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+#insurancecov {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+}
+
+#review table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: black;
+    color: white;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border: 2px solid black;
+    color: black;
+}
+
